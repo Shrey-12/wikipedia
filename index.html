@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wikipedia</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+</head>
+<body>
+    <div class="app">
+        <div id="wikipedia">
+            <form class="searchForm" @submit.prevent="submitSearch">
+                <input type="text" v-model="searchQuery" placeholder="psycology">
+                <span v-show="searchQuery" @click="removeSearchQuery">+</span>
+            </form>
+            <a @click="submitSearch">
+            </a>
+            <div v-show="isResult" transition="expand">
+                <a href="http://en.wikipedia.org/?curid:elem.pageid" v-for="elem in wikiObj">
+                  <div>
+                    <h1>{{ elem.title }}</h1>
+                    <p>{{ elem.extract }}</p>
+                  </div>
+                </a>
+              </div>
+        </div>
+    </div>
+<script src="./script.js"></script>
+</body>
+</html>
